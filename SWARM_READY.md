@@ -21,7 +21,7 @@ If a `swarm-ready` skill is installed, load it. Otherwise execute the documented
 
 ## Repository starting point
 
-Read: [README.md](README.md).
+Read the [local source and build layout](README.md#running-locally) and [contributor guidelines](CONTRIBUTING.md).
 
 Continue an existing approved issue or a clearly scoped user objective after inspecting the source map below. If none is selected, return the smallest useful improvement and its verifier as the handoff; do not begin a portfolio-wide rewrite.
 
@@ -41,7 +41,9 @@ The base above is an inspection snapshot, not a permanent working branch. Refres
 
 ## Verification starting point
 
-No executable acceptance command was established by this bounded source inspection. Read `README.md` and record the narrowest existing check before implementation. Do not invent a `test` command or infer that the repository has no tests from this gap. For a documentation-only task, check links, factual source anchors and whitespace; do not build unrelated application code.
+From the repository root, use `git --no-lazy-fetch ls-files --error-unmatch -- index.html bias-variance/index.html code/bias-variance/package.json` (three tracked paths). The first two are checked-in pages; the package manifest declares the article's Parcel scripts and hooks. Its `test` script only prints a placeholder, so it is not acceptance evidence.
+
+For a docs-only change, resolve the README's relative article links against the Git tree and run `git --no-lazy-fetch diff --check HEAD`. These checks do not install packages, render pages, rebuild generated assets, or execute models.
 
 ## Required handoff result
 

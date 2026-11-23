@@ -4,6 +4,8 @@ This repository holds the code used for Amazon's [MLU-Explain](https://mlu-expla
 
 This material exists as supplementary educational material for [Machine Learning University (MLU)](https://aws.amazon.com/machine-learning/mlu/), which provides anybody, anywhere, at any time access to the same machine learning courses used to train Amazon’s own developers on machine learning.
 
+For source review and documentation checks, see [Swarm-ready handoff](SWARM_READY.md).
+
 # Articles
 
 ## Linear Regression
@@ -14,7 +16,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: A visual, interactive explanation of linear regression for machine learning.
 
-**Code**: [/code/linear-regression/](/code/linear-regression)
+**Code**: [`code/linear-regression/`](code/linear-regression/)
 
 **Authors**: Jared Wilber
 
@@ -26,7 +28,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: Learn about how logistic regression can be used for binary classification through an interactive example.
 
-**Code**: [/code/logistic-regression/](/code/logistic-regression)
+**Code**: [`code/logistic-regression/`](code/logistic-regression/)
 
 **Authors**: Erin Bugbee, Jared Wilber
 
@@ -38,7 +40,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: A visual explanation of the Receiver Operating Characteristic Curve (ROC) curve, how it works with a live interactive example, and how it relates to Area Under The Curve (AUC).
 
-**Code**: [/code/roc-auc/](/code/roc-auc)
+**Code**: [`code/roc-auc/`](code/roc-auc/)
 
 **Authors**: Jared Wilber
 
@@ -50,7 +52,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: Learn why it is best practice to split your data into training, testing, and validation sets, and explore the utility of each with a live machine learning model.
 
-**Code**: [/code/train-test-validation/](/code/train-test-validation)
+**Code**: [`code/train-test-validation/`](code/train-test-validation/)
 
 **Authors**: Jared Wilber, Brent Werness
 
@@ -62,7 +64,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: When it comes to evaluating classification models, accuracy is often a poor metric. This article covers two common alternatives, Precision and Recall, as well as the F1-score and Confusion Matrices.
 
-**Code**: [/code/precision-recall/](/code/precision-recall)
+**Code**: [`code/precision-recall/`](code/precision-recall/)
 
 **Authors**: Jared Wilber
 
@@ -74,7 +76,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: Learn how the majority vote and well-placed randomness can extend the decision tree model to one of machine learning's most widely-used algorithms, the Random Forest.
 
-**Code**: [/code/random-forest/](/code/random-forest)
+**Code**: [`code/random-forest/`](code/random-forest/)
 
 **Authors**: Jenny Yeon, Jared Wilber
 
@@ -86,7 +88,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: Explore one of machine learning's most popular supervised algorithms: the Decision Tree. Learn how the tree makes its splits, the concepts of Entropy and Information Gain, and why going too deep is problematic.
 
-**Code**: [/code/decision-tree/](/code/decision-tree)
+**Code**: [`code/decision-tree/`](code/decision-tree/)
 
 **Authors**: Jared Wilber, Lucía Santamaría
 
@@ -98,7 +100,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: Understand the tradeoff between under- and over-fitting models, how it relates to bias and variance, and explore interactive examples related to LASSO and KNN.
 
-**Code**: [/code/bias-variance/](/code/bias-variance)
+**Code**: [`code/bias-variance/`](code/bias-variance/)
 
 **Authors**: Jared Wilber, Brent Werness
 
@@ -110,7 +112,7 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: Meet the double descent phenomenon in modern machine learning: what it is, how it relates to the bias-variance tradeoff, the importance of the interpolation regime, and a theory of what lies behind.
 
-**Code**: [/code/double-descent/](/code/double-descent)
+**Code**: [`code/double-descent/`](code/double-descent/)
 
 **Authors**: Jared Wilber, Brent Werness
 
@@ -122,45 +124,25 @@ This material exists as supplementary educational material for [Machine Learning
 
 **Summary**: Deepen your understanding of the double descent phenomenon. The article builds on the cubic spline example introduced in Double Descent 1, describing in mathematical detail what is happening.
 
-**Code**: [/code/double-descent2/](/code/double-descent2)
+**Code**: [`code/double-descent2/`](code/double-descent2/)
 
 **Authors**: Brent Werness, Jared Wilber
 
 ## Running Locally
 
-This article holds code for each articles, as well as the generated builds from the code (e.g. the static assets comprising the articles).
+The checkout contains a static [landing page](index.html) and generated pages, such as [Bias Variance](bias-variance/index.html). Those pages are separate from the source projects under `code/`. There is no root `package.json`; check the selected article's manifest before using npm.
 
-First, clone this repo.
-
-```bash
-git clone https://github.com/aws-samples/aws-mlu-explain.git
-```
-
-Next, cd into the article of interest and install the required libraries.
+For example, to develop the Bias Variance article in a provisioned Node/npm environment, start at the repository root and use its [source package](code/bias-variance/package.json):
 
 ```bash
-# e.g. bias variance tradeoff article
-cd bias-variance
-# install libraries
+cd code/bias-variance
 npm install
-```
-
-Now, to run the development version:
-
-```bash
 npm start
 ```
 
-To build and view the static assests:
+If you intend to rebuild it, `npm run build` in the same source directory generates `dist/`. Its build hooks delete and repopulate the tracked top-level `bias-variance/` directory. Only rebuild in an isolated checkout when that output change is intended.
 
-```bash
-# build assets
-npm run build
-# view generated article
-cd dist/
-# run local server
-python3 -m http.server # or just `live-server`
-```
+For docs-only verification, check the tracked paths and script declarations without installing npm dependencies, building, serving pages, or running any interactive model.
 
 ## License Summary
 
